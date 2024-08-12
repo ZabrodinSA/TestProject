@@ -2,7 +2,7 @@
 
 FVector ATestedActor::GetActorPosition()
 {
-	if (!actor)
+	if (actor)
 	{
 		return  actor->GetTransform().GetLocation();
 	}
