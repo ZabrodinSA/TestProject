@@ -1,11 +1,11 @@
 ﻿#include "EngineUtils.h"
 #include "TestedActor.h"
-#include "Kismet/GameplayStatics.h"
 #include "Misc/AutomationTest.h"
 #include "Tests/AutomationCommon.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(MySimpleTest, "TestProject.TestProject.TestActors.MySimpleTest",
                                  EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+#if WITH_AUTOMATION_TESTS
 
 bool MySimpleTest::RunTest(const FString& Parameters)
 {
@@ -13,7 +13,7 @@ bool MySimpleTest::RunTest(const FString& Parameters)
 	UWorld* world = nullptr;
 	if (GEngine)
 	{
-		if (FWorldContext* WorldContext = GEngine->GetWorldContextFromPIEInstance(0))
+		if (const FWorldContext* WorldContext = GEngine->GetWorldContextFromPIEInstance(0))
 		{
 			world = WorldContext->World();
 		}
@@ -30,3 +30,4 @@ bool MySimpleTest::RunTest(const FString& Parameters)
 	}
 	return true;
 }
+#endif
